@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.input-style1 {
+  @apply border rounded focus:outline-none py-[2px] px-2 text-slate-700 text-[.8rem];
+}
+.input-style {
+  @apply w-full border px-4 py-1 rounded-lg  outline-none text-slate-700;
+}        
+.label-style{
+  @apply text-gray-500 text-xs;
+}
+.textarea-style {
+  @apply w-full border px-4 py-1 rounded-lg  outline-none text-slate-700;
+}        
+.input-image-style{
+@apply text-sm border rounded
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
