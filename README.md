@@ -1,6 +1,8 @@
 TO DO: button loading
 
-
+TO DO: pagination
+multiimages
+react slick -- slider
 
 
 

@@ -68,14 +68,14 @@ if(result.errors){
                },
             }}
           >
-            <Button className="bg-red-500 px-1 py-0">
+            <Button size="sm" className="bg-red-500 px-1 py-0">
               {" "}
               <CiEdit size={20} className="text-white" />
             </Button>
           </Link>
           {/* <Button onClick={async () => {await deleteItem("foobar")}} className="p-1">  <CiEdit /></Button> */}
 
-          <Button onClick={()=>handleDelete(product)} className="bg-red-600 px-1 py-0">
+          <Button onClick={()=>handleDelete(product)} size="sm" className="bg-red-600 px-1 py-0 ">
             <MdDeleteForever size={20} className="text-white" />
           </Button>
         </p>
