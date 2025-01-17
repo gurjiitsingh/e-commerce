@@ -63,6 +63,7 @@ export default function RootLayout({
               <Header togelSideBar={togelSideBar} />
             </div>
             <div className="w-full flex flex-col p-5 mt-12 bg-slate-100 h-screen">
+             
               {children}
             </div>
           </div>

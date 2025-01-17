@@ -222,12 +222,19 @@ export type TeditBrandSchema = z.infer<typeof editBrandSchema>;
 
 
 export const addressSchima = z.object({
-  addressline1: z.string().min(2, { message: "Address line 1 is required" }),
-  addressline2: z.string(),
+  name: z
+  .string()
+  .trim()
+  .min(2, { message: "Product name is very short" })
+  .max(30, { message: "Product name is very long" }),
+ 
+  mobNo: z.string().min(2, { message: "City is required" }),
+  addressLine1: z.string().optional(),
+  addressLine2: z.string().optional(),
   city: z.string().min(2, { message: "City is required" }),
   state: z.string().min(2, { message: "State is required" }),
-  zip: z.string().min(2, { message: "Zip code is required" }),
-  userId: z.string().min(1,{ message: "User Id is missing please login or refresh page"}),
+  zipCode: z.string().min(2, { message: "Zip code is required" }),
+  userId: z.string().optional(),
 });
 
 export type TaddressSchema = z.infer<typeof addressSchima>;

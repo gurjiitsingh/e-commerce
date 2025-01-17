@@ -3,7 +3,7 @@ import React from 'react'
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { categorySchema, TcategorySchema } from "@/lib/types";
-import { onSubmitNewCategory } from "@/app/action/category/categoryFormAction";
+import { addNewCategory } from "@/app/action/category/dbOperations";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
@@ -37,7 +37,7 @@ const Form = () => {
    // const { isSubmitting } = formState;
     async function onSubmit(data: TcategorySchema) {
       
-      console.log("onsubit in category form");
+     
       setIsDisabled(true)
       const formData = new FormData();
   
@@ -47,7 +47,7 @@ const Form = () => {
       formData.append("image", data.image[0]);
       //  console.log(formData.get('checkbox'));
   
-      const result = await onSubmitNewCategory(formData);
+      const result = await addNewCategory(formData);
       //const result = JSON.parse(res)
   
       if (result.errors) {

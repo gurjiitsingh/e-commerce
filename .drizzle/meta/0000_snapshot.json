@@ -1,5 +1,5 @@
 {
-  "id": "255ab5da-20e9-45d2-8d8d-ea63c5209914",
+  "id": "3bf1191e-5359-446e-891f-4f4b82c2420a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -14,9 +14,21 @@
           "primaryKey": true,
           "notNull": true
         },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
         "userId": {
           "name": "userId",
           "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mobNo": {
+          "name": "mobNo",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
@@ -139,6 +151,12 @@
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
+        },
+        "imgUrl": {
+          "name": "imgUrl",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -196,15 +214,15 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "orderDetail_productId_product_productId_fk": {
-          "name": "orderDetail_productId_product_productId_fk",
+        "orderDetail_productId_product_id_fk": {
+          "name": "orderDetail_productId_product_id_fk",
           "tableFrom": "orderDetail",
           "tableTo": "product",
           "columnsFrom": [
             "productId"
           ],
           "columnsTo": [
-            "productId"
+            "id"
           ],
           "onDelete": "no action",
           "onUpdate": "no action"
@@ -290,8 +308,8 @@
       "name": "product",
       "schema": "",
       "columns": {
-        "productId": {
-          "name": "productId",
+        "id": {
+          "name": "id",
           "type": "uuid",
           "primaryKey": true,
           "notNull": true,
@@ -309,20 +327,20 @@
           "primaryKey": false,
           "notNull": true
         },
-        "company": {
-          "name": "company",
+        "brand": {
+          "name": "brand",
           "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
-        "productCat": {
-          "name": "productCat",
+        "category": {
+          "name": "category",
           "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
-        "productDesc": {
-          "name": "productDesc",
+        "Desc": {
+          "name": "Desc",
           "type": "varchar",
           "primaryKey": false,
           "notNull": true
@@ -333,8 +351,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "featured": {
-          "name": "featured",
+        "isFeatured": {
+          "name": "isFeatured",
           "type": "boolean",
           "primaryKey": false,
           "notNull": false

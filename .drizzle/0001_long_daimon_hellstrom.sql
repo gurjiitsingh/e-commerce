@@ -1,0 +1,1 @@
+ALTER TABLE "address" RENAME COLUMN "zipcode" TO "zipCode";

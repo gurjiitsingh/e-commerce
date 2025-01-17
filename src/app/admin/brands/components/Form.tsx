@@ -3,12 +3,10 @@ import React, { useEffect } from 'react'
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { brandSchema, TbrandSchema } from "@/lib/types";
-
-import { editCategoryAction, onSubmitNewCategory } from "@/app/action/category/categoryFormAction";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useSearchParams } from 'next/navigation';
-import { addNewBrand, fetchCategoryById } from '@/app/action/brads/dbOperations';
+import { addNewBrand, editBrand } from '@/app/action/brads/dbOperations';
 import { useRouter } from 'next/navigation';
 
 const Form = () => {
@@ -55,7 +53,7 @@ const router = useRouter();
       //  console.log(formData.get('checkbox'));
   let result;
       if(id){
-        result = await editCategoryAction(formData);
+        result = await editBrand(formData);
       }else{
        
       result = await addNewBrand(formData);

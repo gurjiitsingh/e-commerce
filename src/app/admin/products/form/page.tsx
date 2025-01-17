@@ -2,17 +2,15 @@
 import { Button } from "@/components/ui/button";
 import React, { useEffect, useState } from "react";
 
-import Description from "./componets/Description";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { newPorductSchema, TnewProductSchema } from "@/lib/types";
-import { Images } from "lucide-react";
 import { fetchCategories } from "@/app/action/category/dbOperations";
 import { fetchbrands } from "@/app/action/brads/dbOperations";
 import { addNewProduct } from "@/app/action/products/dbOperation";
-
+import Images from "@/app/admin/products/form/componets/Images";
+import Input from "./componets/input";
 type Terror = {
-      
   name: string | null;
   price: string | null;
   featured: string | null;
@@ -27,7 +25,7 @@ const page = () => {
 
   useEffect(() => {
     async function prefetch() {
-      console.log("inside cat fethc");
+      
       const catData = await fetchCategories();
       const brandData = await fetchbrands();
       setCategory(catData);
@@ -40,48 +38,50 @@ const page = () => {
     register,
     formState: { errors, isSubmitting },
     setValue,
+    control,
+    watch,
     handleSubmit,
     setError,
+    formState: { dirtyFields },
   } = useForm<TnewProductSchema>({
     resolver: zodResolver(newPorductSchema),
   });
-
+  const images = watch("images");
   async function onsubmit(data: TnewProductSchema) {
-   
     //typeof(data.featured)
     const formData = new FormData();
-
+console.log("images---------",images)
     formData.append("name", data.name);
     formData.append("price", data.price);
-    formData.append("featured",data.featured);
+    formData.append("featured", data.featured);
     formData.append("brand", data.brand);
-    formData.append("weight",data.weight);
-    formData.append("dimensions",data.dimensions);
+    formData.append("weight", data.weight);
+    formData.append("dimensions", data.dimensions);
     formData.append("productCat", data.productCat);
     formData.append("productDesc", data.productDesc);
     formData.append("image", data.image[0]);
 
     const result = await addNewProduct(formData);
 
-    if(!result?.errors){
-     // router.push('/admin/products')
-    
-     setValue('name', "");
-     setValue('productDesc', "");
-     setValue('price', "");
-     setValue('productCat',"Select Category")
-     setValue('brand',"Select Brand")
-     setValue('weight',"")
-     setValue('dimensions',"")
-     setValue('isFeatured',false)
-    }else{
-      alert("Some thing went wrong")
+    if (!result?.errors) {
+      // router.push('/admin/products')
+
+      setValue("name", "");
+      setValue("productDesc", "");
+      setValue("price", "");
+      setValue("productCat", "Select Category");
+      setValue("brand", "Select Brand");
+      setValue("weight", "");
+      setValue("dimensions", "");
+      setValue("isFeatured", false);
+    } else {
+      alert("Some thing went wrong");
     }
 
     if (result.errors) {
       // not network error but data validation error
-      const errors:Terror = result.errors;
-       
+      const errors: Terror = result.errors;
+
       if (errors.name) {
         setError("name", {
           type: "server",
@@ -115,14 +115,12 @@ const page = () => {
           type: "server",
           message: errors.company,
         });
-      }
-       else {
-      //  alert("Something went wrong");
+      } else {
+        //  alert("Something went wrong");
       }
     }
 
-    console.log(result);
-
+    console.log("response in create product form ",result);
   }
 
   return (
@@ -263,7 +261,7 @@ const page = () => {
               <div className="flex-1 flex flex-col gap-3 bg-white rounded-xl p-4 border">
                 <h1 className="font-semibold">Pictures</h1>
                 <div className="flex flex-col gap-1">
-                  <label className="label-style">Product Image</label>
+                  <label className="label-style">Featured Image</label>
                   <input
                     {...register("image", { required: true })}
                     type="file"
@@ -273,6 +271,26 @@ const page = () => {
                   <p className="text-[0.8rem] font-medium text-destructive">
                     {errors.image && <span>Select product image</span>}
                   </p>
+                </div>
+                {/* multiple images upload */}
+                <div className="flex flex-col gap-1">
+                  <label className="label-style">Product Images</label>
+                  <Input
+                    name={"images"}
+                    type="file"
+                    control={control}
+                    multiple={true}
+                    className="input-image-style"
+                  />
+                  <div className="flex flex-row wrap gap-3">
+                  {images?.length > 0 &&
+                    images.map((image, i) => (
+                      <img className="w-[70px] " src={URL.createObjectURL(image)} key={i} />
+                    ))}
+                    </div>
+                  <p>
+                    {/* {JSON.stringify(dirtyFields)} */}
+                    </p>
                 </div>
               </div>
 
@@ -309,10 +327,10 @@ const page = () => {
 
                 <div className="flex    items-center gap-4">
                   <label className="label-style">Featured Product</label>
-                  <input {...register("featured")} type="checkbox"  />
+                  <input {...register("isFeatured")} type="checkbox" />
                   <p className="text-[0.8rem] font-medium text-destructive">
-                    {errors.featured?.message && (
-                      <p>{errors.featured?.message}</p>
+                    {errors.isFeatured?.message && (
+                      <p>{errors.isFeatured?.message}</p>
                     )}
                   </p>
                 </div>

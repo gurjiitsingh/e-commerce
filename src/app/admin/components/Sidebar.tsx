@@ -65,7 +65,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <div className='z-20 bg-white fixed h-screen w-[290px] border-r flex flex-col py-4 px-8 items-center justify-between overflow-hidden'>
+    <div className='h-screen w-[290px] border-r flex flex-col py-4 px-8 items-center justify-between overflow-hidden'>
        <ul className='flex flex-col gap-2 overflow-y-auto'>
         {
        menuList?.map((item)=>{return(

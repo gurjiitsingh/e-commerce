@@ -6,7 +6,9 @@ END $$;
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "address" (
 	"addressId" serial PRIMARY KEY NOT NULL,
+	"name" varchar NOT NULL,
 	"userId" uuid,
+	"mobNo" varchar,
 	"addressLine1" varchar NOT NULL,
 	"addressLine2" varchar,
 	"city" varchar,
@@ -26,7 +28,8 @@ CREATE TABLE IF NOT EXISTS "category" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" varchar NOT NULL,
 	"desc" varchar,
-	"slug" varchar
+	"slug" varchar,
+	"imgUrl" varchar
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "orderDetail" (
@@ -49,14 +52,14 @@ CREATE TABLE IF NOT EXISTS "orderHeader" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "product" (
-	"productId" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" varchar NOT NULL,
 	"price" varchar NOT NULL,
-	"company" varchar NOT NULL,
-	"productCat" varchar NOT NULL,
-	"productDesc" varchar NOT NULL,
+	"brand" varchar NOT NULL,
+	"category" varchar NOT NULL,
+	"Desc" varchar NOT NULL,
 	"image" varchar NOT NULL,
-	"featured" boolean,
+	"isFeatured" boolean,
 	"weight" varchar,
 	"dimensions" varchar
 );
@@ -88,7 +91,7 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "orderDetail" ADD CONSTRAINT "orderDetail_productId_product_productId_fk" FOREIGN KEY ("productId") REFERENCES "public"."product"("productId") ON DELETE no action ON UPDATE no action;
+ ALTER TABLE "orderDetail" ADD CONSTRAINT "orderDetail_productId_product_id_fk" FOREIGN KEY ("productId") REFERENCES "public"."product"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

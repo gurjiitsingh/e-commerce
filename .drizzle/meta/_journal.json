@@ -5,29 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1730267558136,
-      "tag": "0000_exotic_kulan_gath",
+      "when": 1731053799943,
+      "tag": "0000_fresh_taskmaster",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1730269181517,
-      "tag": "0001_thin_gressill",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1730276168144,
-      "tag": "0002_lumpy_paibok",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1730295299680,
-      "tag": "0003_slim_unicorn",
+      "when": 1731053893218,
+      "tag": "0001_long_daimon_hellstrom",
       "breakpoints": true
     }
   ]

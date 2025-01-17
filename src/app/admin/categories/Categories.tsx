@@ -1,6 +1,6 @@
 'use client'
 import CategoryList from './components/CategoryList';
-import Cat from './components/Cat'
+
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
 

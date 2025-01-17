@@ -34,6 +34,7 @@ export const category = pgTable("category",{
   name:varchar("name").notNull(),
   desc:varchar("desc"),
   slug:varchar("slug"),
+  imgUrl:varchar("imgUrl"),
 })
 
 export const brand = pgTable("brand",{
@@ -99,16 +100,17 @@ export const orderDetail = pgTable("orderDetail",{
 // );
 
 
-
+ 
 export const address = pgTable("address",{
-
   addressId: serial('addressId').primaryKey(),
+  name:varchar("name").notNull(),
   userId: uuid('userId').references(()=>user.id),
+  mobNo: varchar('mobNo'),
   addressLine1: varchar('addressLine1').notNull(),
   addressLine2: varchar('addressLine2'),
   city: varchar('city'),
   state: varchar('state'),
-  zipcode: varchar('zipcode'),
+  zipCode: varchar('zipCode'),
 
 })
 

@@ -91,10 +91,9 @@ export async function addNewProduct(formData: FormData) {
 }
 
 export async function deleteProduct(id:string, oldImgageUrl:string) {
-  const ida="kjljl"
+  
   const result = await db.delete(product).where(eq(product.id, id));
 
-  console.log("errrrrrrr", result)
   if (result?.rowCount === 1) {
 
     const imageUrlArray = oldImgageUrl.split("/");
@@ -236,6 +235,8 @@ export async function editProduct(formData:FormData){
 
 
 }
+
+
 
 export async function fetchProducts(){
 

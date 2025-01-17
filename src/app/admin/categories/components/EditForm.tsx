@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { editCategorySchema, TeditCategorySchema } from "@/lib/types";
-import { editCategoryAction } from "@/app/action/category/categoryFormAction";
+import { editCategory } from "@/app/action/category/dbOperations";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -72,7 +72,7 @@ const slug = searchParams.get('slug')
       formData.append("image", data.image[0]);
       //  console.log(formData.get('checkbox'));
   
-       const result = await editCategoryAction(formData);
+       const result = await editCategory(formData);
       //const result = JSON.parse(res)
   
       if (result.errors) {

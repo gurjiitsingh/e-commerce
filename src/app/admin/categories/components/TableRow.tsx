@@ -37,7 +37,7 @@ async function handleUpdate(){
         <TableCell>{item.name}</TableCell>
         <TableCell>{item.desc}</TableCell>
         <TableCell>
-          {/* <Image src={item.image} width={100} height={100} alt={item.name} /> */}
+          <img src={item.imgUrl} width={100} height={100} alt={item.name} />
         </TableCell>
 
         <TableCell>{/* <FeaturitemUpdate /> */}</TableCell>
